@@ -1,0 +1,7 @@
+/* Panda CSS Layers - Best Practice: Import layers in order */
+@layer reset, base, tokens, recipes, utilities;
+
+/* Custom base styles */
+code {
+  font-family: var(--fonts-mono);
+}
