@@ -19,11 +19,11 @@ export default defineConfig({
     body: {
       margin: 0,
       fontFamily: "var(--fonts-body)",
-      bg: "bg.canvas",
-      color: "text.primary",
+      bg: "white",
+      color: "black",
     },
     "*, *::before, *::after": {
-      borderColor: "border.default",
+      borderColor: "muted.50",
     },
   },
 
@@ -32,19 +32,10 @@ export default defineConfig({
       tokens: {
         colors: {
           primary: {
-            50: { value: "#B1EDE8" },
-            100: { value: "#9AE5DE" },
-            200: { value: "#83DDD4" },
-          },
-          secondary: {
-            50: { value: "#FAC9B8" },
-            100: { value: "#F8B8A3" },
-            200: { value: "#F6A78E" },
-          },
-          accent: {
-            50: { value: "#FCFF4B" },
-            100: { value: "#FBFF33" },
-            200: { value: "#FAFF1B" },
+            0: { value: "#1ADBBB" },
+            50: { value: "#15B097" },
+            100: { value: "#13A48C" },
+            200: { value: "#0F806D" },
           },
           black: {
             value: "#000009",
@@ -72,6 +63,20 @@ export default defineConfig({
             100: { value: "#E55A3B" },
             200: { value: "#DC4829" },
           },
+          gradients: {
+            hero: {
+              value:
+                "linear-gradient(to bottom, #0f172a, #1e293b, #0f172a)",
+            },
+            heroOverlay: {
+              value:
+                "linear-gradient(to right, rgba(6, 182, 212, 0.1), rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.1))",
+            },
+            text: {
+              value: "linear-gradient(to right, #22d3ee, #60a5fa)",
+            },
+          },
+        },
         fonts: {
           body: {
             value:
@@ -88,8 +93,6 @@ export default defineConfig({
           md: { value: "1rem" },
           lg: { value: "1.5rem" },
           xl: { value: "2rem" },
-          "2xl": { value: "3rem" },
-          "3xl": { value: "4rem" },
         },
         radii: {
           xs: { value: "0.125rem" },
@@ -100,173 +103,9 @@ export default defineConfig({
           "2xl": { value: "1rem" },
           full: { value: "9999px" },
         },
-        gradients: {
-          hero: {
-            value:
-              "linear-gradient(to bottom, #0f172a, #1e293b, #0f172a)",
-          },
-          heroOverlay: {
-            value:
-              "linear-gradient(to right, rgba(6, 182, 212, 0.1), rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.1))",
-          },
-          text: {
-            value: "linear-gradient(to right, #22d3ee, #60a5fa)",
-          },
-        },
       },
-    },
-    semanticTokens: {
+      semanticTokens: {
         colors: {
-          bg: {
-            canvas: {
-              value: {
-                base: "{colors.white}",
-              },
-            },
-            primary: {
-              value: {
-                base: "{colors.primary.50}",
-                _hover: "{colors.primary.100}",
-                _active: "{colors.primary.200}",
-              },
-            },
-            surface: {
-              value: {
-                base: "{colors.secondary.50}",
-              },
-            },
-            secondary: {
-              value: {
-                base: "{colors.secondary.50}",
-                _hover: "{colors.secondary.100}",
-                _active: "{colors.secondary.200}",
-              },
-            },
-            muted: {
-              value: {
-                base: "{colors.muted.50}",
-              },
-            },
-            error: {
-              value: {
-                base: "{colors.error.50}",
-                _hover: "{colors.error.100}",
-                _active: "{colors.error.200}",
-              },
-            },
-            success: {
-              value: {
-                base: "{colors.success.50}",
-                _hover: "{colors.success.100}",
-                _active: "{colors.success.200}",
-              },
-            },
-            warning: {
-              value: {
-                base: "{colors.warning.50}",
-                _hover: "{colors.warning.100}",
-                _active: "{colors.warning.200}",
-              },
-            },
-            gradient_hero: {
-              value: {
-                base: "{gradients.hero}",
-              },
-            },
-            gradient_hero_overlay: {
-              value: {
-                base: "{gradients.heroOverlay}",
-              },
-            },
-            gradient_text: {
-              value: {
-                base: "{gradients.text}",
-              },
-            },
-          },
-          text: {
-            primary: {
-              value: {
-                base: "{colors.primary.200}",
-              },
-            },
-            secondary: {
-              value: {
-                base: "{colors.secondary.200}",
-              },
-            },
-            muted: {
-              value: {
-                base: "{colors.muted.200}",
-              },
-            },
-            error: {
-              value: {
-                base: "{colors.error.100}",
-              },
-            },
-            success: {
-              value: {
-                base: "{colors.success.100}",
-              },
-            },
-            warning: {
-              value: {
-                base: "{colors.warning.100}",
-              },
-            },
-            white: {
-              value: {
-                base: "{colors.white}",
-              },
-            },
-            black: {
-              value: {
-                base: "{colors.black}",
-              },
-            },
-          },
-          border: {
-            default: {
-              value: {
-                base: "{colors.primary.100}",
-              },
-            },
-            muted: {
-              value: {
-                base: "{colors.muted.100}",
-              },
-            },
-            error: {
-              value: {
-                base: "{colors.error.100}",
-              },
-            },
-            success: {
-              value: {
-                base: "{colors.success.100}",
-              },
-            },
-            warning: {
-              value: {
-                base: "{colors.warning.100}",
-              },
-            },
-          },
-          accent: {
-            default: {
-              value: {
-                base: "{colors.accent.50}",
-                _hover: "{colors.accent.100}",
-                _active: "{colors.accent.200}",
-              },
-            },
-            subtle: {
-              value: {
-                base: "{colors.accent.50}",
-              },
-            },
-          },
           boxShadow: {
             default: {
               value: {
@@ -283,19 +122,6 @@ export default defineConfig({
     extend: {
       light: "[data-theme=light] &, .light &",
       dark: "[data-theme=dark] &, .dark &",
-    },
-  },
-
-  patterns: {
-    extend: {
-      // Add custom patterns if needed
-    },
-  },
-
-  // Best Practice: Use utility classes for better performance
-  utilities: {
-    extend: {
-      // Add custom utilities if needed
     },
   },
 });

@@ -9,7 +9,9 @@ export function DefaultWrapper(
     return (<div className={css({
         marginBottom: 'md',
     })}>
-        <Label htmlFor={field.name} >
+        <Label
+        htmlFor={field.name}
+        >
             {label}
         </Label>
         {children}

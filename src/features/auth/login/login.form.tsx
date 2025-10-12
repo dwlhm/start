@@ -1,5 +1,6 @@
 import { useAppForm } from "@/shared/form/hooks/use.form"
 import { LoginFormSchema } from "./types"
+import { css } from "styled-system/css"
 
 export function LoginForm() {
     const form = useAppForm({
@@ -23,6 +24,10 @@ export function LoginForm() {
     return (
         <form
             onSubmit={handleSubmit}
+            className={css({
+                maxWidth: 'md',
+                width: 'full',
+            })}
         >
             <form.AppField name="username"
                 children={(field) => (

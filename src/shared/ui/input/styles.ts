@@ -2,11 +2,20 @@ import { cva } from "styled-system/css";
 
 export const input = cva({
     base: {
-        padding: 'xs',
         borderWidth: '1',
         borderStyle: 'solid',
-        borderColor: 'border.default',
-        rounded: 'md',
+        borderColor: 'muted.50',
+        rounded: 'lg',
+        width: 'full',
+        paddingBottom: 'xs',
+        paddingTop: 'xs',
+        paddingLeft: 'sm',
+        paddingRight: 'sm',
+        _focusVisible: {
+            outlineWidth: '2',
+            outlineStyle: 'solid',
+            outlineColor: 'primary.100',
+        },
     },
 })
 
@@ -14,7 +23,9 @@ export const label = cva({
     base: {
         fontSize: 'sm',
         fontWeight: 'medium',
-        color: 'text.secondary',
+        color: 'black',
+        display: 'block',
+        marginBottom: '1',
     },
 })
 
@@ -22,10 +33,10 @@ export const message = cva({
     variants: {
         type: {
             default: {
-                color: 'text.secondary',
+                color: 'black',
             },
             error: {
-                color: 'text.error',
+                color: 'error.50',
             },
         },
     },

@@ -5,7 +5,7 @@ export function SubmitButton({ children }: { children?: React.ReactNode | ((isSu
     const form = useFormContext()
     return (<form.Subscribe selector={(state) => state.isSubmitting}>
         {(isSubmitting) => (
-            <Button type="submit" disabled={isSubmitting} variant="primary" size="md">
+            <Button type="submit" disabled={isSubmitting} variant="primary" size="base" onClick={() => console.log("Kelik nih kak!")}>
                 {typeof children === 'function' ? children(isSubmitting) : children}
             </Button>
         )}

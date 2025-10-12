@@ -2,70 +2,73 @@ import { cva } from "styled-system/css";
 
 export const button = cva({
     base: {
-        padding: 'xs',
-        borderWidth: '1',
         borderStyle: 'solid',
-        borderColor: 'border.default',
-        backgroundColor: 'bg.primary',
+        borderWidth: '1',
+        color: 'black',
         rounded: 'md',
+        cursor: 'pointer',
+        transition: 'colors',
+        width: 'full',
+        _disabled: {
+            opacity: 0.5,
+            cursor: 'not-allowed',
+        },
     },
     variants: {
         variant: {
             primary: {
-                backgroundColor: 'bg.primary',
-                color: 'text.white',
-                _hover: {
-                    backgroundColor: 'bg.primary',
-                },
-                _disabled: {
-                    opacity: 0.5,
-                    cursor: 'not-allowed',
-                },
+                backgroundColor: 'primary.50',
             },
-            secondary: {
-                backgroundColor: 'bg.secondary',
-                color: 'text.white',
-                _hover: {
-                    backgroundColor: 'bg.secondary',
-                },
-                _disabled: {
-                    opacity: 0.5,
-                    cursor: 'not-allowed',
-                },
+            danger: {
+                backgroundColor: 'error.50',
+            },
+            success: {
+                backgroundColor: 'success.50',
+            },
+            warning: {
+                backgroundColor: 'warning.50',
             },
         },
         size: {
-            sm: {
-                padding: 'xs',
+            base: {
+                paddingLeft: '4',
+                paddingRight: '4',
+                paddingTop: '2',
+                paddingBottom: '2',
             },
-            md: {
-                padding: 'sm',
+            small: {
+                paddingLeft: '2',
+                paddingRight: '2',
+                paddingTop: '0.5',
+                paddingBottom: '0.5',
             },
-        },
-        disabled: {
-            true: {
-                opacity: 0.5,
-                cursor: 'not-allowed',
-            },
-        },
-        loading: {
-            true: {
-                opacity: 0.5,
-                cursor: 'not-allowed',
-            },
-        },
-        icon: {
-            true: {
-                padding: 'xs',
+            large: {
+                paddingLeft: '6',
+                paddingRight: '6',
+                paddingTop: '3',
+                paddingBottom: '3',
             },
         },
-        iconPosition: {
-            left: {
-                padding: 'xs',
+        preset: {
+            fill: {
+                borderWidth: '0',
+                borderStyle: 'none',
             },
-            right: {
-                padding: 'xs',
+            outline: {
+                backgroundColor: 'transparent',
+                color: 'primary.50',
+                borderWidth: '1',
+                borderStyle: 'solid',
+            },
+            ghost: {
+                backgroundColor: 'transparent',
+                color: 'primary.50',
             },
         },
+    },
+    defaultVariants: {
+        variant: 'primary',
+        size: 'base',
+        preset: 'fill',
     },
 })
