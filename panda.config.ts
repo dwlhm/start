@@ -32,21 +32,46 @@ export default defineConfig({
       tokens: {
         colors: {
           primary: {
-            value: "#0f172a",
+            50: { value: "#B1EDE8" },
+            100: { value: "#9AE5DE" },
+            200: { value: "#83DDD4" },
           },
           secondary: {
-            value: "#64748b",
+            50: { value: "#FAC9B8" },
+            100: { value: "#F8B8A3" },
+            200: { value: "#F6A78E" },
+          },
+          accent: {
+            50: { value: "#FCFF4B" },
+            100: { value: "#FBFF33" },
+            200: { value: "#FAFF1B" },
+          },
+          black: {
+            value: "#000009",
+          },
+          white: {
+            value: "#FEFFEA",
           },
           muted: {
-            value: "#94a3b8",
+            50: { value: "#C9C9C9" },
+            100: { value: "#A0A0A0" },
+            200: { value: "#777777" },
           },
           error: {
-            value: "#dc2626",
+            50: { value: "#D44D5C" },
+            100: { value: "#C23A4A" },
+            200: { value: "#B02738" },
           },
           success: {
-            value: "#16a34a",
+            50: { value: "#628B48" },
+            100: { value: "#5A7E40" },
+            200: { value: "#527138" },
           },
-        },
+          warning: {
+            50: { value: "#EE6C4D" },
+            100: { value: "#E55A3B" },
+            200: { value: "#DC4829" },
+          },
         fonts: {
           body: {
             value:
@@ -89,7 +114,8 @@ export default defineConfig({
           },
         },
       },
-      semanticTokens: {
+    },
+    semanticTokens: {
         colors: {
           bg: {
             canvas: {
@@ -99,22 +125,47 @@ export default defineConfig({
             },
             primary: {
               value: {
-                base: "{colors.primary}",
+                base: "{colors.primary.50}",
+                _hover: "{colors.primary.100}",
+                _active: "{colors.primary.200}",
               },
             },
             surface: {
               value: {
-                base: "{colors.secondary}",
+                base: "{colors.secondary.50}",
               },
             },
             secondary: {
               value: {
-                base: "{colors.secondary}",
+                base: "{colors.secondary.50}",
+                _hover: "{colors.secondary.100}",
+                _active: "{colors.secondary.200}",
               },
             },
             muted: {
               value: {
-                base: "{colors.muted}",
+                base: "{colors.muted.50}",
+              },
+            },
+            error: {
+              value: {
+                base: "{colors.error.50}",
+                _hover: "{colors.error.100}",
+                _active: "{colors.error.200}",
+              },
+            },
+            success: {
+              value: {
+                base: "{colors.success.50}",
+                _hover: "{colors.success.100}",
+                _active: "{colors.success.200}",
+              },
+            },
+            warning: {
+              value: {
+                base: "{colors.warning.50}",
+                _hover: "{colors.warning.100}",
+                _active: "{colors.warning.200}",
               },
             },
             gradient_hero: {
@@ -136,27 +187,32 @@ export default defineConfig({
           text: {
             primary: {
               value: {
-                base: "{colors.primary}",
+                base: "{colors.primary.200}",
               },
             },
             secondary: {
               value: {
-                base: "{colors.secondary}",
+                base: "{colors.secondary.200}",
               },
             },
             muted: {
               value: {
-                base: "{colors.muted}",
+                base: "{colors.muted.200}",
               },
             },
             error: {
               value: {
-                base: "{colors.error}",
+                base: "{colors.error.100}",
               },
             },
             success: {
               value: {
-                base: "{colors.success}",
+                base: "{colors.success.100}",
+              },
+            },
+            warning: {
+              value: {
+                base: "{colors.warning.100}",
               },
             },
             white: {
@@ -164,28 +220,50 @@ export default defineConfig({
                 base: "{colors.white}",
               },
             },
+            black: {
+              value: {
+                base: "{colors.black}",
+              },
+            },
           },
           border: {
             default: {
               value: {
-                base: "{colors.primary}",
+                base: "{colors.primary.100}",
               },
             },
             muted: {
               value: {
-                base: "{colors.muted}",
+                base: "{colors.muted.100}",
+              },
+            },
+            error: {
+              value: {
+                base: "{colors.error.100}",
+              },
+            },
+            success: {
+              value: {
+                base: "{colors.success.100}",
+              },
+            },
+            warning: {
+              value: {
+                base: "{colors.warning.100}",
               },
             },
           },
           accent: {
             default: {
               value: {
-                base: "{colors.blue.500}",
+                base: "{colors.accent.50}",
+                _hover: "{colors.accent.100}",
+                _active: "{colors.accent.200}",
               },
             },
             subtle: {
               value: {
-                base: "{colors.blue.50}",
+                base: "{colors.accent.50}",
               },
             },
           },
