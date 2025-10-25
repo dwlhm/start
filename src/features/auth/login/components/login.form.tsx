@@ -1,5 +1,5 @@
 import { useAppForm } from "@/shared/form/hooks/use.form"
-import { emailSchema, LoginFormSchema, passwordSchema } from "../types"
+import { emailValidator, passwordValidator, loginValidator } from "../schema"
 import { css } from "styled-system/css"
 
 export function LoginForm() {
@@ -9,7 +9,7 @@ export function LoginForm() {
             password: '',
         },
         validators: {
-            onSubmit: LoginFormSchema,
+            onSubmit: loginValidator,
         },
         onSubmit: async (values) => {
             await new Promise(resolve => setTimeout(resolve, 1000))
@@ -30,7 +30,7 @@ export function LoginForm() {
         >
             <form.AppField name="email"
                 validators={{
-                    onChange: emailSchema,
+                    onChange: emailValidator,
                 }}
                 children={(field) => (
                     <field.TextField label="Email" type="email" autoComplete="email" />
@@ -38,7 +38,7 @@ export function LoginForm() {
             />
             <form.AppField name="password"
                 validators={{
-                    onChange: passwordSchema,
+                    onChange: passwordValidator,
                 }}
                 children={(field) => (
                     <field.TextField label="Password" type="password" autoComplete="current-password" />

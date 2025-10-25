@@ -9,5 +9,4 @@ export type ValidateFn<TFormData extends Record<string, any>, K extends DeepKeys
     formApi?: FormApi<TFormData>
 ) => string | undefined
 
-// Simplified: one error per field for consistency
 export type ErrorFormat<K> = { path: [K]; message: string } | undefined

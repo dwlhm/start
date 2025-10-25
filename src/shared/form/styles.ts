@@ -5,7 +5,7 @@ export const input = cva({
         padding: 'xs',
         borderWidth: '1',
         borderStyle: 'solid',
-        borderColor: 'border.default',
+        borderColor: 'muted.50',
         rounded: 'md',
     },
 })
