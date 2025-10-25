@@ -25,11 +25,60 @@ export default defineConfig({
     "*, *::before, *::after": {
       borderColor: "muted.50",
     },
+    a: {
+      color: 'blue.600',
+      _hover: {
+        textDecoration: 'underline',
+      },
+    }
   },
 
   theme: {
     extend: {
+      keyframes: {
+        gradientShift: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
+        },
+        colorShift: {
+          "0%": { filter: "hue-rotate(0deg)" },
+          "25%": { filter: "hue-rotate(90deg)" },
+          "50%": { filter: "hue-rotate(180deg)" },
+          "75%": { filter: "hue-rotate(270deg)" },
+          "100%": { filter: "hue-rotate(360deg)" },
+        },
+      },
       tokens: {
+        sizes: {
+          "xs": { value: "0.5rem" },
+          "sm": { value: "0.75rem" },
+          "md": { value: "1rem" },
+          "lg": { value: "1.5rem" },
+          "xl": { value: "2rem" },
+          "2xl": { value: "2.5rem" },
+          "3xl": { value: "3rem" },
+          "4xl": { value: "3.5rem" },
+          "5xl": { value: "4rem" },
+          "card-xs": { value: "16rem" },
+          "card-sm": { value: "20rem" },
+          "card-md": { value: "24rem" },
+          "card-lg": { value: "28rem" },
+          "card-xl": { value: "32rem" },
+          "card-2xl": { value: "36rem" },
+          "card-3xl": { value: "40rem" },
+          "card-4xl": { value: "44rem" },
+          "card-5xl": { value: "48rem" },
+          "card-6xl": { value: "52rem" },
+          "card-7xl": { value: "56rem" },
+          "card-8xl": { value: "60rem" },
+          "card-9xl": { value: "64rem" },
+          "card-10xl": { value: "68rem" },
+          "100vh": { value: "100vh" },
+          "100vw": { value: "100vw" },
+          screen: { value: "100vw" },
+          full: { value: "100%" },
+        },
         colors: {
           primary: {
             0: { value: "#1ADBBB" },
@@ -41,7 +90,10 @@ export default defineConfig({
             value: "#000009",
           },
           white: {
-            value: "#FEFFEA",
+            value: "#FBFCFB",
+          },
+          milky: {
+            value: "#F6F4F0",
           },
           muted: {
             50: { value: "#C9C9C9" },
@@ -75,6 +127,9 @@ export default defineConfig({
             text: {
               value: "linear-gradient(to right, #22d3ee, #60a5fa)",
             },
+            animated: {
+              value: "linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff, #5f27cd)",
+            },
           },
         },
         fonts: {
@@ -93,6 +148,11 @@ export default defineConfig({
           md: { value: "1rem" },
           lg: { value: "1.5rem" },
           xl: { value: "2rem" },
+          "2xl": { value: "2.5rem" },
+          "3xl": { value: "3rem" },
+          "4xl": { value: "3.5rem" },
+          "5xl": { value: "4rem" },
+          "62%": { value: "62%"},
         },
         radii: {
           xs: { value: "0.125rem" },
@@ -102,6 +162,15 @@ export default defineConfig({
           xl: { value: "0.75rem" },
           "2xl": { value: "1rem" },
           full: { value: "9999px" },
+        },
+        animations: {
+          gradientShift: { value: "gradientShift 8s ease infinite" },
+          colorShift: { value: "colorShift 12s ease infinite" },
+          gradientAnimated: { value: "gradientShift 8s ease infinite, colorShift 12s ease infinite" },
+        },
+        shadows: {
+          textSm: { value: "0 1px 2px rgba(0,0,0,0.5)" },
+          textLg: { value: "0 2px 4px rgba(0,0,0,0.5)" },
         },
       },
       semanticTokens: {

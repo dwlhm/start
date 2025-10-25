@@ -10,6 +10,7 @@ Project eksplorasi implementasi TanStack Start + PandaCSS
 - [Routing](#-routing)
 - [Scripts](#-scripts)
 - [Best Practices](#-best-practices)
+- [Security & Validation](#-security--validation)
 
 ## 🛠 Tech Stack
 
@@ -201,9 +202,60 @@ TanStack Start support Server-Side Rendering:
 - Hydration di client
 - Optimal untuk SEO
 
+## 🔐 Security & Validation
+
+Project ini mengimplementasikan production-ready validation yang mengikuti industry standards:
+
+### Standards yang Digunakan
+
+- **RFC 5321 & RFC 5322** - Email validation
+- **NIST SP 800-63B** - Password security guidelines
+- **OWASP** - Web application security best practices
+
+### Validation Features
+
+✅ **Email Validation**
+- RFC-compliant regex pattern
+- Length constraints (max 254 chars)
+- Domain and TLD validation
+- Edge case handling
+
+✅ **Password Validation**
+- Strong password requirements (8-128 chars)
+- Character diversity enforcement
+- Common password blocking
+- Weak pattern detection
+- Detailed error messages
+
+✅ **Name Validation**
+- International character support
+- Special character handling
+- Length and pattern validation
+
+### Documentation
+
+Dokumentasi lengkap tersedia di folder `/docs`:
+
+- **📖 [Documentation Index](./docs/README.md)** - Start here for all documentation
+- **🔐 [Security Validation Guide](./docs/security/validation-guide.md)** - Comprehensive guide
+- **⚡ [Quick Reference](./docs/security/quick-reference.md)** - Quick lookup
+- **💻 [Code Examples](./docs/security/examples/)** - Working code samples
+- **🤝 [Contributing Guidelines](./docs/contributing/CONTRIBUTING.md)** - How to contribute
+- **🚀 [Getting Started](./docs/guides/getting-started.md)** - Setup guide
+- **🚢 [Deployment Guide](./docs/guides/deployment.md)** - Production deployment
+
+Dokumentasi mencakup:
+- Penjelasan detail tentang RFC, NIST, dan OWASP standards
+- Implementation examples dengan code
+- Testing strategies
+- Common pitfalls dan cara menghindarinya
+- Best practices untuk frontend validation
+
 ## 📚 Resources
 
 - [TanStack Start](https://tanstack.com/start)
 - [TanStack Form](https://tanstack.com/form)
 - [PandaCSS](https://panda-css.com)
 - [ArkType](https://arktype.io)
+- [NIST SP 800-63B](https://pages.nist.gov/800-63-3/sp800-63b.html)
+- [OWASP Cheat Sheets](https://cheatsheetseries.owasp.org/)

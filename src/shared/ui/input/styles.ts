@@ -11,6 +11,7 @@ export const input = cva({
         paddingTop: 'xs',
         paddingLeft: 'sm',
         paddingRight: 'sm',
+        bg: 'white',
         _focusVisible: {
             outlineWidth: '2',
             outlineStyle: 'solid',

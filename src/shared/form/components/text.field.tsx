@@ -3,7 +3,7 @@ import { useFieldContext } from "../hooks/use.form";
 import { DefaultWrapper } from "./default.wrapper";
 import { Input } from "@/shared/ui/input";
 
-export function TextField({ label }: { label: string }) {
+export function TextField({ label, ...props }: { label: string } & React.ComponentProps<'input'>) {
     const field  = useFieldContext<string>()
 
     const errors = useStore(field.store, (state) => state.meta.errors)
@@ -15,6 +15,7 @@ export function TextField({ label }: { label: string }) {
             onBlur={field.handleBlur}
             id={field.name}
             name={field.name}
+            {...props}
         />
     </DefaultWrapper>)
 }

@@ -16,8 +16,8 @@ export function DefaultWrapper(
         </Label>
         {children}
         <div>
-            {errors.map((error: ValidationError) => (
-                <Message key={error.message} type="error">
+            {errors.map((error: ValidationError, index: number) => (
+                <Message key={`${error.path.join('.')}-${error.message}-${index}`} type="error">
                     {error.message}
                 </Message>
             ))}

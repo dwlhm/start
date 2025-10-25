@@ -1,11 +1,11 @@
 import { useAppForm } from "@/shared/form/hooks/use.form"
-import { LoginFormSchema } from "./types"
+import { emailSchema, LoginFormSchema, passwordSchema } from "../types"
 import { css } from "styled-system/css"
 
 export function LoginForm() {
     const form = useAppForm({
         defaultValues: {
-            username: '',
+            email: '',
             password: '',
         },
         validators: {
@@ -25,18 +25,23 @@ export function LoginForm() {
         <form
             onSubmit={handleSubmit}
             className={css({
-                maxWidth: 'md',
                 width: 'full',
             })}
         >
-            <form.AppField name="username"
+            <form.AppField name="email"
+                validators={{
+                    onChange: emailSchema,
+                }}
                 children={(field) => (
-                    <field.TextField label="Username" />
+                    <field.TextField label="Email" type="email" autoComplete="email" />
                 )}
             />
             <form.AppField name="password"
+                validators={{
+                    onChange: passwordSchema,
+                }}
                 children={(field) => (
-                    <field.TextField label="Password" />
+                    <field.TextField label="Password" type="password" autoComplete="current-password" />
                 )}
             />
             <form.AppForm>
