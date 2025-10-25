@@ -6,9 +6,9 @@ import { Input } from "@/shared/ui/input";
 export function NumberField({ label }: { label: string }) {
     const field  = useFieldContext<number>()
 
-    const errors = useStore(field.store, (state) => state.meta.errors)
+    const error = useStore(field.store, (state) => state.meta.errors?.[0])
 
-    return (<DefaultWrapper label={label} field={field} errors={errors}>
+    return (<DefaultWrapper label={label} field={field} error={error}>
         <Input
             id={field.name}
             name={field.name}

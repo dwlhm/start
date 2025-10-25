@@ -5,8 +5,7 @@ import { Input } from "@/shared/ui/input";
 
 export function TextField({ label, ...props }: { label: string } & React.ComponentProps<'input'>) {
     const field  = useFieldContext<string>()
-
-    const errors = useStore(field.store, (state) => state.meta.errors)
+    const errors = useStore(field.store, (state) => state.meta.errors ?? [])
 
     return (<DefaultWrapper label={label} field={field} errors={errors}>
         <Input

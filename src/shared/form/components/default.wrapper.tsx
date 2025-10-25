@@ -1,10 +1,10 @@
 import { css } from "styled-system/css";
-import { ValidationError } from "../types";
+import { ErrorFormat } from "../types";
 import { Label, Message } from "@/shared/ui/input";
 
 export function DefaultWrapper(
     { label, field, errors, children }:
-        { label: string, field: any, errors: ValidationError[], children: React.ReactNode }
+        { label: string, field: any, errors: ErrorFormat<keyof typeof field.state.value>[], children: React.ReactNode }
 ) {
     return (<div className={css({
         marginBottom: 'md',
@@ -15,12 +15,10 @@ export function DefaultWrapper(
             {label}
         </Label>
         {children}
-        <div>
-            {errors.map((error: ValidationError, index: number) => (
-                <Message key={`${error.path.join('.')}-${error.message}-${index}`} type="error">
-                    {error.message}
+        {errors.length > 0 && errors.map((error) => (
+            <Message type="error">
+                    {error?.message ?? 'Unknown error'}
                 </Message>
             ))}
-        </div>
     </div>)
 }
