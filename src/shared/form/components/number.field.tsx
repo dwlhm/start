@@ -15,6 +15,7 @@ export function NumberField({ label }: { label: string }) {
             value={field.state.value}
             onChange={(e) => field.handleChange(Number(e.target.value))}
             onBlur={field.handleBlur}
+            isError={errors.length > 0}
         />
     </DefaultWrapper>)
 }

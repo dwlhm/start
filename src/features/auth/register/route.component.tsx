@@ -13,6 +13,7 @@ export default function RegisterRouteComponent() {
       minHeight: 'screen',
       width: 'screen',
       overflow: 'hidden',
+      paddingY: 'lg',
     })}>
       <div className={css({
         position: 'fixed',
@@ -39,7 +40,8 @@ export default function RegisterRouteComponent() {
       </div>
       <img src="/start-logo.png" alt="logo" className={css({
         zIndex: '10',
-        width: '5xl',
+        maxWidth: '5xl',
+        width: 'full',
         height: 'auto',
         objectFit: 'contain',
         marginBottom: '5xl',
@@ -47,7 +49,8 @@ export default function RegisterRouteComponent() {
       })} />
       <div className={css({
         zIndex: '10',
-        width: 'card-xl',
+        maxWidth: 'card-xl',
+        width: 'full',
         bg: 'white',
         padding: 'lg',
         display: 'flex',

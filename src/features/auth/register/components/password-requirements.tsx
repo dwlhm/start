@@ -6,7 +6,7 @@ const requirements = [
     { id: 'lowercase', text: 'Mengandung huruf kecil (a-z)', test: (pw: string) => /[a-z]/.test(pw) },
     { id: 'uppercase', text: 'Mengandung huruf besar (A-Z)', test: (pw: string) => /[A-Z]/.test(pw) },
     { id: 'number', text: 'Mengandung angka (0-9)', test: (pw: string) => /\d/.test(pw) },
-    { id: 'special', text: 'Mengandung karakter khusus (@$!%*?&)', test: (pw: string) => /[@$!%*?&]/.test(pw) },
+    { id: 'special', text: 'Mengandung karakter khusus (@$!%*?&)', test: (pw: string) => /[@$!%*?&#^()_+=\-[\]{}|\\:;"'<>,.~`]/.test(pw) },
 ]
 
 export function PasswordRequirements() {
@@ -21,7 +21,8 @@ export function PasswordRequirements() {
             rounded: 'md', 
             borderWidth: '1px',
             borderStyle: 'solid',
-            borderColor: 'gray.200' 
+            borderColor: 'gray.200', 
+            marginBottom: 'md',
         })}>
             <div className={css({ 
                 fontSize: 'sm', 

@@ -1,5 +1,5 @@
 import { input } from "../styles";
 
-export function Input(props: React.ComponentProps<'input'>) {
-    return <input{...props} className={input()} />
+export function Input(props: React.ComponentProps<'input'> & { isError?: boolean }) {
+    return <input{...props} className={input({ isError: props.isError })} />
 }

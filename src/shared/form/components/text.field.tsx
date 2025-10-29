@@ -14,6 +14,7 @@ export function TextField({ label, ...props }: { label: string } & React.Compone
             onBlur={field.handleBlur}
             id={field.name}
             name={field.name}
+            isError={errors.length > 0}
             {...props}
         />
     </DefaultWrapper>)

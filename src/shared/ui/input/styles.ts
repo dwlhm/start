@@ -18,6 +18,13 @@ export const input = cva({
             outlineColor: 'primary.100',
         },
     },
+    variants: {
+        isError: {
+            true: {
+                borderColor: 'error.50',
+            },
+        },
+    },
 })
 
 export const label = cva({
