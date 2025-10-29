@@ -30,23 +30,25 @@ export function LoginForm() {
         >
             <form.AppField name="email"
                 validators={{
-                    onChange: emailValidator,
+                  onChange: emailValidator,
                 }}
-                children={(field) => (
-                    <field.TextField label="Email" type="email" autoComplete="email" />
-                )}
-            />
+            >
+              {(field) => (
+                <field.TextField label="Email" type="email" autoComplete="email" />
+              )}
+            </form.AppField>
             <form.AppField name="password"
                 validators={{
                     onChange: passwordValidator,
                 }}
-                children={(field) => (
-                    <field.TextField label="Password" type="password" autoComplete="current-password" />
-                )}
-            />
+            >
+              {(field) => (
+                <field.TextField label="Password" type="password" autoComplete="current-password" />
+              )}
+            </form.AppField>
             <form.AppForm>
                 <form.SubmitButton>
-                    {(isSubmitting) => isSubmitting ? '📨 Logging in...' : '📨 Login'}
+                  {(isSubmitting) => isSubmitting ? '📨 Logging in...' : '📨 Login'}
                 </form.SubmitButton>
             </form.AppForm>
         </form>

@@ -15,8 +15,8 @@ export function DefaultWrapper(
             {label}
         </Label>
         {children}
-        {errors.length > 0 && errors.map((error) => (
-            <Message type="error">
+        {errors.length > 0 && errors.map((error, index) => (
+            <Message key={`${field.name}.label.${index}.input`} type="error">
                     {error?.message ?? 'Unknown error'}
                 </Message>
             ))}
