@@ -1,10 +1,11 @@
-import android.content.Context
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.application
 import com.dwlhm.start.engine.BrowserTab
 
 class BrowserViewModel(
-    private val context: Context
-): ViewModel() {
+    application: Application
+): AndroidViewModel(application) {
     private val _tabs = mutableListOf<BrowserTab>()
     private var _activeTabIndex = 0
 
@@ -17,7 +18,7 @@ class BrowserViewModel(
     }
 
     fun newTab(url: String): Int {
-        val tab = BrowserTab(context)
+        val tab = BrowserTab(application)
         tab.load(url)
         _tabs += tab
         _activeTabIndex = _tabs.lastIndex
