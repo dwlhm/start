@@ -27,4 +27,10 @@ dependencyResolutionManagement {
 
 rootProject.name = "Start"
 include(":app")
- 
+include(":core:ui")
+include(":core:common")
+include(":features:browser")
+include(":core:storage")
+include(":features:home")
+include(":features:onboarding")
+include(":core:nav")
