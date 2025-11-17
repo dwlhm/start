@@ -2,14 +2,9 @@ package com.dwlhm.onboarding.ui
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.LinearOutSlowInEasing
-import androidx.compose.animation.core.animateDp
-import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.core.updateTransition
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
@@ -29,9 +24,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -44,8 +40,6 @@ import androidx.compose.ui.unit.sp
 import com.dwlhm.ui.navigation.theme.EuphoriaScript
 import com.dwlhm.ui.navigation.theme.InterScript
 import kotlinx.coroutines.delay
-
-import com.dwlhm.onboarding.ui.SoftGlowParticles
 import kotlin.math.max
 
 @Composable
@@ -55,28 +49,6 @@ fun OnboardingScreen(onFinish: () -> Unit) {
 
 @Composable
 fun OnboardingContainer(onFinish: () -> Unit) {
-    var expanded by remember { mutableStateOf(true) }
-
-//    LaunchedEffect(Unit) {
-//        delay(300)
-//        expanded = false
-//    }
-
-    val transition = updateTransition(targetState = expanded, label = "onboardingCardTransition")
-    val scale = transition.animateFloat(
-        transitionSpec = { tween(1000, easing = FastOutSlowInEasing) },
-        label = "scaleAnim"
-    ) { expanded -> if (expanded) 1f else 0.2f }
-
-    val cornerRadius = transition.animateDp(
-        transitionSpec = { tween(800, easing = LinearOutSlowInEasing) },
-        label = "cornerAnim"
-    ) { expanded -> if (expanded) 20.dp else 4.dp }
-
-    val size = transition.animateDp(
-        transitionSpec = { tween(900, easing = FastOutSlowInEasing) },
-        label = "sizeAnim"
-    ) { expanded -> if (expanded) 250.dp else 120.dp }
 
     Column(
         modifier = Modifier
@@ -117,21 +89,23 @@ fun OnboardingContainer(onFinish: () -> Unit) {
                         fontFamily = EuphoriaScript,
                         fontStyle = FontStyle.Italic,
                         fontSize = 18.sp,
+                        color = Color.Black,
                         modifier = Modifier
                             .align(Alignment.CenterHorizontally),
                     )
                     Row {
-
                         Text(
                             text = "Start",
                             fontFamily = InterScript,
                             fontWeight = FontWeight.Bold,
+                            color = Color.Black,
                             fontSize = 24.sp
                         )
                         Text(
                             text = " the journey",
                             fontFamily = InterScript,
-                            fontSize = 24.sp
+                            fontSize = 24.sp,
+                            color = Color.Black,
                         )
                     }
                 }
@@ -144,7 +118,7 @@ fun OnboardingContainer(onFinish: () -> Unit) {
                 .fillMaxWidth()
                 .height(80.dp)
                 .background(Color.Black)
-                .padding(10.dp), // Sedikit padding vertikal
+                .padding(10.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -172,8 +146,8 @@ fun AnimatedRotatingText(onFinish: () -> Unit) {
         "🥳"
     )
 
-    var index by remember { mutableStateOf(0) }
-    var progress by remember { mutableStateOf(0f) }
+    var index by remember { mutableIntStateOf(0) }
+    var progress by remember { mutableFloatStateOf(0f) }
 
     val animationDuration = 3000L
 
