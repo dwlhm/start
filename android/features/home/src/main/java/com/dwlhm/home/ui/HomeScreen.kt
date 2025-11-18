@@ -11,10 +11,20 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.ime
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.SearchBarDefaults.InputField
+import androidx.compose.material3.BottomSheetScaffold
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.SheetState
+import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberBottomSheetScaffoldState
+import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -33,26 +43,37 @@ import com.dwlhm.browser.GeckoViewContainer
 import com.dwlhm.ui.navigation.theme.EuphoriaScript
 import com.dwlhm.ui.navigation.theme.InterScript
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen() {
     val context = LocalContext.current
     val viewModel = remember {
         BrowserViewModel(context.applicationContext as Application)
     }
+    
+    val bottomSheetState = rememberStandardBottomSheetState(
+        initialValue = SheetValue.PartiallyExpanded
+    )
+    val scaffoldState = rememberBottomSheetScaffoldState(
+        bottomSheetState = bottomSheetState
+    )
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Black)
-//            .padding(26.dp, 26.dp, 26.dp, 10.dp)
-    ) {
-//        TopCard()
-        MainCard(modifier = Modifier
-            .weight(1F)
-            .fillMaxWidth(),
+    BottomSheetScaffold(
+        scaffoldState = scaffoldState,
+        sheetContent = {
+            BottomCardContent(viewModel, bottomSheetState)
+        },
+        sheetPeekHeight = 80.dp,
+        sheetContainerColor = Color.Black,
+        sheetDragHandle = null,
+        containerColor = Color.White
+    ) { paddingValues ->
+        MainCard(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues),
             viewModel = viewModel,
         )
-        BottomCard(viewModel)
     }
 }
 
@@ -118,10 +139,16 @@ fun MainCard(modifier: Modifier, viewModel: BrowserViewModel) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BottomCard(viewModel: BrowserViewModel) {
+fun BottomCardContent(viewModel: BrowserViewModel, sheetState: SheetState) {
     val activeTab by viewModel.activeTab.collectAsState()
     val currentUrl by viewModel.currentUrl.collectAsState()
+    val loadingProgress by viewModel.loadingProgress.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
+    
+    val isExpanded = sheetState.currentValue == SheetValue.Expanded
+    val hasLoadedWeb = activeTab != null
     
     fun handleOnGo(url: String) {
         val formattedUrl = UrlUtils.formatUrl(url)
@@ -138,22 +165,58 @@ fun BottomCard(viewModel: BrowserViewModel) {
         }
     }
 
-    Row(
+    // Jika web sudah load, tidak pakai rounded corner
+    val cornerRadius = if (hasLoadedWeb) 0.dp else 26.dp
+
+    Column(
         modifier = Modifier
             .fillMaxWidth()
-            .height(80.dp)
+            .heightIn(min = 80.dp)
+            .clip(RoundedCornerShape(cornerRadius, cornerRadius, 0.dp, 0.dp))
             .background(Color.Black)
-            .padding(10.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(10.dp)
+            .imePadding() // Tambahkan padding untuk keyboard di seluruh Column
     ) {
-        // URL Input Field
-        UrlInputField(
+        LoadingIndicator(
+            progress = loadingProgress,
+            isLoading = isLoading,
             modifier = Modifier
-                .weight(1F)
-                .height(40.dp),
-            currentUrl = currentUrl,
-            onGo = { handleOnGo(it) }
+                .fillMaxWidth()
+                .padding(16.dp, 4.dp, 16.dp, 0.dp)
         )
+
+        // Welcome text when expanded
+        if (isExpanded) {
+            Text(
+                text = "selamat datang di detail",
+                fontFamily = InterScript,
+                fontSize = 16.sp,
+                color = Color.White,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp, 16.dp, 16.dp, 8.dp)
+            )
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(76.dp) // Tinggi tetap: 60dp content + 16dp padding bottom
+                .padding(10.dp, 0.dp, 10.dp, 16.dp), // Tambahkan padding bottom untuk keyboard
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            // URL Input Field
+            UrlInputField(
+                modifier = Modifier
+                    .weight(1F)
+                    .height(40.dp),
+                currentUrl = currentUrl,
+                onGo = { handleOnGo(it) },
+                viewModel,
+            )
+        }
+        
+        // Spacer untuk memberikan ruang expand (selalu ada agar bisa di-drag ke atas)
+        Spacer(modifier = Modifier.height(300.dp))
     }
 }

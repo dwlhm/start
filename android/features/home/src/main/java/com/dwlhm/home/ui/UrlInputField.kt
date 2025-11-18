@@ -36,12 +36,14 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.dwlhm.browser.BrowserViewModel
 
 @Composable
 fun UrlInputField(
     modifier: Modifier,
     currentUrl: String? = null,
-    onGo: (url: String) -> Unit
+    onGo: (url: String) -> Unit,
+    viewModel: BrowserViewModel
 ) {
     val url = rememberTextFieldState()
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -101,6 +103,7 @@ fun UrlInputField(
                     color = Color(0x70333333),
                     shape = RoundedCornerShape(26.dp)
                 )
+                .padding(26.dp, 0.dp)
                 .onFocusChanged { focusState ->
                     // Reset editing state ketika fokus hilang
                     if (!focusState.isFocused && isUserEditing) {
@@ -149,19 +152,24 @@ fun UrlInputField(
             }
         )
 
-        Button(
-            onClick = { handleSubmit() },
-            shape = RoundedCornerShape(26.dp), // border radius
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color.White.copy(alpha = 0.8f), // background
-                contentColor = Color.Black // warna teks
-            ),
-            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 0.dp), // padding custom
-            modifier = Modifier
-                .height(40.dp)
-                .padding(start = 10.dp)
-        ) {
-            Text("GO")
+        if (url.text.isNotEmpty() && isUserEditing) {
+            Button(
+                onClick = { handleSubmit() },
+                shape = RoundedCornerShape(26.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.White.copy(alpha = 0.8f),
+                    contentColor = Color.Black
+                ),
+                contentPadding = PaddingValues(
+                    horizontal = 16.dp,
+                    vertical = 0.dp
+                ),
+                modifier = Modifier
+                    .height(40.dp)
+                    .padding(start = 10.dp)
+            ) {
+                Text("Go")
+            }
         }
 
     }

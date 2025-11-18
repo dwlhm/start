@@ -21,6 +21,12 @@ class BrowserTab(context: Context) {
     
     private val _canGoForward = MutableStateFlow(false)
     val canGoForward: StateFlow<Boolean> = _canGoForward.asStateFlow()
+    
+    private val _loadingProgress = MutableStateFlow(0)
+    val loadingProgress: StateFlow<Int> = _loadingProgress.asStateFlow()
+    
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
     init {
         session.open(runtime)
@@ -50,14 +56,19 @@ class BrowserTab(context: Context) {
                 super.onPageStart(session, url)
                 Log.d("BrowserTab", "Page start: $url")
                 _currentUrl.value = url
+                _isLoading.value = true
+                _loadingProgress.value = 0
             }
 
             override fun onProgressChange(session: GeckoSession, progress: Int) {
                 Log.d("BrowserTab", "Progress: $progress")
+                _loadingProgress.value = progress
             }
 
             override fun onPageStop(session: GeckoSession, success: Boolean) {
                 Log.d("BrowserTab", "Page stop: $success")
+                _isLoading.value = false
+                _loadingProgress.value = 100
                 // URL sudah diupdate di onPageStart, tidak perlu update lagi di sini
             }
         }

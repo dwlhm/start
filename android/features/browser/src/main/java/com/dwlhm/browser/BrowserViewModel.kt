@@ -53,8 +53,34 @@ class BrowserViewModel(
             initialValue = false
         )
     
+    // Expose loading progress dari active tab
+    val loadingProgress: StateFlow<Int> = _activeTab
+        .flatMapLatest { tab ->
+            tab?.loadingProgress ?: MutableStateFlow(0).asStateFlow()
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = kotlinx.coroutines.flow.SharingStarted.WhileSubscribed(5000),
+            initialValue = 0
+        )
+    
+    // Expose loading state dari active tab
+    val isLoading: StateFlow<Boolean> = _activeTab
+        .flatMapLatest { tab ->
+            tab?.isLoading ?: MutableStateFlow(false).asStateFlow()
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = kotlinx.coroutines.flow.SharingStarted.WhileSubscribed(5000),
+            initialValue = false
+        )
+    
     fun goBack() {
         _activeTab.value?.goBack()
+    }
+
+    fun noActiveTabs(): Boolean {
+        return !_tabs.isNotEmpty()
     }
     
     fun goForward() {
